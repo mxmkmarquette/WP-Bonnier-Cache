@@ -1,0 +1,23 @@
+{
+    "name": "bonnier/wp-bonnier-cache",
+    "description": "Integrates Bonnier Caching into WordPress",
+    "type": "wordpress-plugin",
+    "require": {
+        "guzzlehttp/guzzle": "^6.3"
+    },
+    "authors": [
+        {
+            "name": "Bonnier Publications",
+            "email": "interactive@bonnier.dk"
+        },
+        {
+            "name": "Magnus Flor",
+            "email": "magnus.johansen@bonnier.dk"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "Bonnier\\WP\\Cache\\": "src"
+        }
+    }
+}
