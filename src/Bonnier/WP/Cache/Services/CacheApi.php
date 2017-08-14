@@ -21,7 +21,7 @@ class CacheApi
     {
         self::$settings = $settings;
         $host_url = self::$settings->get_setting_value('host_url');
-        if($host_url) {
+        if(!empty($host_url)) {
             self::$client = new Client([
                 'base_uri' => $host_url,
             ]);
