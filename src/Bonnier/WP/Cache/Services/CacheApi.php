@@ -20,9 +20,14 @@ class CacheApi
     public static function bootstrap(SettingsPage $settings)
     {
         self::$settings = $settings;
-        self::$client = new Client([
-            'base_uri' => self::$settings->get_setting_value('host_url'),
-        ]);
+        $host_url = self::$settings->get_setting_value('host_url');
+        if($host_url) {
+            self::$client = new Client([
+                'base_uri' => $host_url,
+            ]);
+        } else {
+            self::$client = new Client();
+        }
     }
 
     /**

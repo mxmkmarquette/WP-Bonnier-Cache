@@ -2,9 +2,6 @@
     "name": "bonnier/wp-bonnier-cache",
     "description": "Integrates Bonnier Caching into WordPress",
     "type": "wordpress-plugin",
-    "require": {
-        "guzzlehttp/guzzle": "^6.3"
-    },
     "authors": [
         {
             "name": "Bonnier Publications",
