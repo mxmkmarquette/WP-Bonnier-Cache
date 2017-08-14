@@ -25,8 +25,6 @@ class CacheApi
             self::$client = new Client([
                 'base_uri' => $host_url,
             ]);
-        } else {
-            self::$client = new Client();
         }
     }
 
@@ -50,18 +48,17 @@ class CacheApi
 
     private static function post($uri, $url)
     {
+        if(is_null(self::$client)) {
+            return false;
+        }
         try {
             $response = self::$client->post($uri, ['json' => ['url' => $url]]);
         } catch(ClientException $e) {
-            var_dump($e->getMessage());
-            exit;
             return false;
         }
 
         if(200 === $response->getStatusCode()) {
             $result = \json_decode($response->getBody());
-            var_dump("SUCCESS: ".$uri);
-            exit;
             return isset($result->status) && 200 == $result->status;
         }
 
