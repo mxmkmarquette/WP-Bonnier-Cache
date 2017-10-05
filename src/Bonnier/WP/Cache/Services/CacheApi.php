@@ -46,7 +46,7 @@ class CacheApi
         return null;
     }
 
-    private static function post($uri, $url)
+    public static function post($uri, $url)
     {
         if(is_null(self::$client)) {
             return false;
