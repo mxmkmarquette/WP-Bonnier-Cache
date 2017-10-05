@@ -14,7 +14,7 @@ use Bonnier\WP\Cache\Models\Post;
 use Bonnier\WP\Cache\Services\CacheApi;
 use Bonnier\WP\Cache\Settings\SettingsPage;
 
-defined( 'ABSPATH' ) or die( 'No script kiddies please!' );
+defined('ABSPATH') or die('No script kiddies please!');
 
 spl_autoload_register(function ($className) {
     if (strpos($className, __NAMESPACE__) !== false) {
@@ -23,7 +23,7 @@ spl_autoload_register(function ($className) {
     }
 });
 
-require_once( __DIR__ . '/includes/vendor/autoload.php' );
+require_once(__DIR__ . '/includes/vendor/autoload.php');
 
 class WpBonnierCache
 {
@@ -63,7 +63,7 @@ class WpBonnierCache
 
     public static function instance()
     {
-        if(!self::$instance) {
+        if (!self::$instance) {
             self::$instance = new self();
             global $wp_bonnier_cache;
             $wp_bonnier_cache = self::$instance;

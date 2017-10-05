@@ -35,7 +35,7 @@ class SettingsPage
         return $this->get_setting_value('host_url') ?: '';
     }
 
-    function print_error($error)
+    public function print_error($error)
     {
         $out = "<div class='error settings-error notice is-dismissible'>";
         $out .= "<strong>" . self::NOTICE_PREFIX . "</strong><p>$error</p>";
@@ -63,17 +63,14 @@ class SettingsPage
      */
     public function create_admin_page()
     {
-        // Set class property
-
-        ?>
+        // Set class property ?>
         <div class="wrap">
             <form method="post" action="options.php">
                 <?php
                 // This prints out all hidden setting fields
                 settings_fields(self::SETTINGS_GROUP);
-                do_settings_sections(self::SETTINGS_PAGE);
-                submit_button();
-                ?>
+        do_settings_sections(self::SETTINGS_PAGE);
+        submit_button(); ?>
             </form>
         </div>
         <?php
@@ -126,7 +123,7 @@ class SettingsPage
                 if ($settingsField['type'] === 'text' || $settingsField['type'] === 'select') {
                     $sanitizedInput[$fieldKey] = sanitize_text_field($input[$fieldKey]);
                 }
-                if($settingsField['type'] === 'callback') {
+                if ($settingsField['type'] === 'callback') {
                     $sanitizedInput[$fieldKey] =call_user_func_array($settingsField['sanitize_callback'], [$input[$fieldKey]]);
                 }
             }
@@ -163,7 +160,7 @@ class SettingsPage
 
     public function get_setting_value($settingKey)
     {
-        if(!$this->settingsValues) {
+        if (!$this->settingsValues) {
             $this->settingsValues = get_option(self::SETTINGS_KEY);
         }
 
@@ -183,7 +180,6 @@ class SettingsPage
         }
 
         return [];
-
     }
 
     private function create_settings_field($field, $fieldKey)
@@ -210,8 +206,7 @@ class SettingsPage
             }
             $fieldOutput .= "</select>";
         }
-        if($field['type'] === 'callback') {
-
+        if ($field['type'] === 'callback') {
             $fieldValue = isset($this->settingsValues[$fieldKey]) ? $this->settingsValues[$fieldKey] : [];
 
             call_user_func_array($field['callback'], [$fieldName, $fieldValue]);
