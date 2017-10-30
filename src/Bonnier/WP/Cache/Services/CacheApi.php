@@ -38,6 +38,18 @@ class CacheApi
         if (!wp_is_post_revision($postID) && !wp_is_post_autosave($postID)) {
             $contentUrl = is_numeric($postID) ? get_permalink($postID) : '';
 
+            if($delete) {
+                global $post;
+                $postTerms = get_the_category($postID);
+
+                //Fix delete permalink.
+                if(isset($postTerms[0]) && $postTerms[0] instanceof \WP_Term) {
+                    $postCategory = $postTerms[0];
+                    $categoryLink = get_category_link($postCategory->term_id);
+                    $contentUrl = $categoryLink.'/'.$post->post_name;
+                }
+            }
+
             $uri = $delete || !Post::is_published($postID) ? self::CACHE_DELETE : self::CACHE_UPDATE;
 
             return self::post($uri, $contentUrl);
