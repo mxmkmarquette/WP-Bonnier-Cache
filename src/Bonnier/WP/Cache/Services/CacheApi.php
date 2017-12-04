@@ -30,7 +30,7 @@ class CacheApi
 
     /**
      * @param int $postID
-     *
+     * @param bool $delete
      * @return bool
      */
     public static function update($postID, $delete = false)
