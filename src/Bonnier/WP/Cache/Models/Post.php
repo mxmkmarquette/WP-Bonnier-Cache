@@ -16,16 +16,28 @@ class Post
         add_action('transition_post_status', [__CLASS__, 'post_status_changed'], 10, 3);
     }
 
-    public static function post_status_changed($new_status, $old_status, $post)
+    public static function post_status_changed($new_status, $old_status, $other_post)
     {
         if ($old_status === 'draft' && $new_status === 'trash') {
             return;
         }
 
-        if ($new_status === 'publish') {
+        global $post;
+
+        // If it's a new post it can be null!
+        if ($post === null) {
+            return;
+        }
+
+        // Clear the old post id
+        if (get_permalink($post) !== get_permalink($other_post)) {
             self::update_post($post->ID);
+        }
+
+        if ($new_status === 'publish') {
+            self::update_post($other_post->ID);
         } elseif ($new_status === 'trash') {
-            self::delete_post($post->ID);
+            self::delete_post($other_post->ID);
         }
     }
 
