@@ -25,7 +25,7 @@ class Post
 
         if ($new_status === 'publish') {
             self::update_post($post->ID);
-        //If post is trashed or drafted
+            //If post is trashed or drafted
         } elseif ($new_status === 'trash' || $new_status === 'draft') {
             self::delete_post($post->ID);
         }
