@@ -16,18 +16,25 @@ class Post
         add_action('transition_post_status', [__CLASS__, 'post_status_changed'], 10, 3);
     }
 
-    public static function post_status_changed($new_status, $old_status, $post)
+    public static function post_status_changed($new_status, $old_status, $post_changed)
     {
+        global $post;
         //Ignore deleted draft posts
         if ($old_status === 'draft' && $new_status === 'trash') {
             return;
         }
 
+        // Check the old post first
+        if($old_status == 'publish' && $new_status != 'publish') {
+            // This will fetch the old slug, and clean it with cXense
+            CacheApi::post('api/v1/delete', get_permalink($post));
+        }
+
         if ($new_status === 'publish') {
-            self::update_post($post->ID);
+            self::update_post($post_changed->ID);
             //If post is trashed or drafted
         } elseif ($new_status === 'trash' || $new_status === 'draft') {
-            self::delete_post($post->ID);
+            self::delete_post($post_changed->ID);
         }
     }
 
