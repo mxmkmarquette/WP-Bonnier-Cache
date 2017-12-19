@@ -25,7 +25,7 @@ class Post
         }
 
         // Check the old post first
-        if($old_status == 'publish' && $new_status != 'publish') {
+        if ($old_status == 'publish' && $new_status != 'publish') {
             // This will fetch the old slug, and clean it with cXense
             CacheApi::post('api/v1/delete', get_permalink($post));
         }
