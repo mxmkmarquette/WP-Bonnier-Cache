@@ -8,37 +8,96 @@ use Bonnier\WP\Cache\Settings\SettingsPage;
 class Post
 {
     private static $settings;
+    // Figure out a way to dynamically fetch this variable - otherwise
+    // REMEMBER to update this field whenever ACF field keys are updated
+    // if they ever are.
+    const ACF_CATEGORY_ID = 'field_58e39a7118284';
 
     public static function watch_post_changes(SettingsPage $settingsPage)
     {
         self::$settings = $settingsPage;
 
-        add_action('transition_post_status', [__CLASS__, 'post_status_changed'], 10, 3);
+        // triggers when post status changes to trash
+        add_action('wp_trash_post', [__CLASS__, 'remove_post'], 10, 1);
+        add_action('publish_to_draft', [__CLASS__, 'remove_post'], 10, 1);
+
+        // publish post
+        add_action('publish_to_publish', [__CLASS__, 'update_post'], 10, 1);
+
+        add_action('draft_to_publish', [__CLASS__, 'publish_post'], 10, 1);
+        add_action('untrashed_post', [__CLASS__, 'publish_post'], 10, 1);
     }
 
-    public static function post_status_changed($new_status, $old_status, $post)
+    public static function publish_post($publishedPostID)
     {
-        //Ignore deleted draft posts
-        if ($old_status === 'draft' && $new_status === 'trash') {
+        $publishedPost = get_post($publishedPostID);
+
+        // Skip update on attachment & inherit
+        if (! ('publish' === $publishedPost->post_status
+                || ('attachment' === get_post_type($publishedPost) && 'inherit' === $publishedPost->post_status))
+            || is_post_type_hierarchical($publishedPost->post_type)
+        ) {
             return;
         }
 
-        if ($new_status === 'publish') {
-            self::update_post($post->ID);
-            //If post is trashed or drafted
-        } elseif ($new_status === 'trash' || $new_status === 'draft') {
-            self::delete_post($post->ID);
-        }
+        CacheApi::add($publishedPost->ID);
     }
 
-    public static function update_post($postId)
+    public static function update_post($changedPostID)
     {
-        return CacheApi::update($postId);
+        $changedPost = get_post($changedPostID);
+
+        global $post;
+        $deleteOldFlag = false;
+
+        if (!('publish' === $changedPost->post_status
+                || ('attachment' === get_post_type($changedPost)
+                    && 'inherit' === $changedPost->post_status)
+            ) || is_post_type_hierarchical($changedPost->post_type)
+        ) {
+            return;
+        }
+
+        // Post name has changed. Clean old URL
+        if ($changedPost->post_name != $post->post_name) {
+            $deleteOldFlag = true;
+        }
+
+        // Check if the category has changed. If so, clean old URL
+        $newPostCategory = get_term($_REQUEST['acf'][static::ACF_CATEGORY_ID]);
+        $oldPostCategory = get_the_category($post->ID)[0];
+        if ($newPostCategory->term_id != $oldPostCategory->term_id) {
+            $deleteOldFlag = true;
+        }
+
+        // Delete if flagged
+        if ($deleteOldFlag) {
+            CacheApi::delete($changedPost->ID);
+
+            // If delete is triggered add(!) the new one.
+            CacheApi::add($changedPost->ID);
+            return;
+        }
+
+        CacheApi::update($changedPost->ID);
     }
 
+    public static function remove_post($postID)
+    {
+
+        // if the post we try to trash is current published,
+
+        CacheApi::delete($postID);
+    }
+
+    /**
+     * @param $postId
+     * @return bool|void
+     * @deprecated
+     */
     public static function delete_post($postId)
     {
-        return CacheApi::update($postId, true);
+        return CacheApi::delete($postId);
     }
 
     public static function is_published($postId)
