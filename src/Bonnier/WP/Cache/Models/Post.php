@@ -22,7 +22,7 @@ class Post
         add_action('publish_to_draft', [__CLASS__, 'remove_post'], 10, 1);
 
         // publish post
-        add_action('publish_to_publish', [__CLASS__, 'update_posts'], 10, 1);
+        add_action('publish_to_publish', [__CLASS__, 'update_post'], 10, 1);
 
         add_action('draft_to_publish', [__CLASS__, 'publish_post'], 10, 1);
         add_action('untrashed_post', [__CLASS__, 'publish_post'], 10, 1);
@@ -43,7 +43,7 @@ class Post
         CacheApi::add($publishedPost->ID);
     }
 
-    public static function update_posts($changedPostID)
+    public static function update_post($changedPostID)
     {
         $changedPost = get_post($changedPostID);
 
@@ -88,16 +88,6 @@ class Post
         // if the post we try to trash is current published,
 
         CacheApi::delete($postID);
-    }
-
-    /**
-     * @param $postId
-     * @return bool
-     * @deprecated
-     */
-    public static function update_post($postId)
-    {
-        return CacheApi::update($postId);
     }
 
     /**
