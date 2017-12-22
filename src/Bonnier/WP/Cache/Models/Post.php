@@ -8,7 +8,9 @@ use Bonnier\WP\Cache\Settings\SettingsPage;
 class Post
 {
     private static $settings;
-
+    // Figure out a way to dynamically fetch this variable - otherwise
+    // REMEMBER to update this field whenever ACF field keys are updated
+    // if they ever are.
     const ACF_CATEGORY_ID = 'field_58e39a7118284';
 
     public static function watch_post_changes(SettingsPage $settingsPage)
