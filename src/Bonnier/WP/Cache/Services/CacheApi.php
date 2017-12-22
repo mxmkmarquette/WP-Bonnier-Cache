@@ -47,14 +47,14 @@ class CacheApi
         $contentUrl = $categoryLink.'/'.$post->post_name;
 
         return self::post(self::CACHE_UPDATE, $contentUrl);
-
     }
 
     /**
      * @param $postID
      * @return bool|void
      */
-    public static function add($postID) {
+    public static function add($postID)
+    {
         $post = get_post($postID);
 
         if (wp_is_post_revision($postID) || wp_is_post_autosave($postID)) {
@@ -65,7 +65,7 @@ class CacheApi
             ? $_REQUEST['acf'][static::ACF_CATEGORY_ID]
             : false;
 
-        if($acfCategory) {
+        if ($acfCategory) {
             $postCategory = get_term($acfCategory);
         } else {
             $postTerms = get_the_category($postID);
@@ -78,15 +78,14 @@ class CacheApi
         $contentUrl = $categoryLink.'/'.$post->post_name;
 
         return self::post(self::CACHE_ADD, $contentUrl);
-
     }
 
     /**
      * @param $postID
      * @return bool|void
      */
-    public static function delete($postID) {
-
+    public static function delete($postID)
+    {
         if (wp_is_post_revision($postID) || wp_is_post_autosave($postID)) {
             return;
         }

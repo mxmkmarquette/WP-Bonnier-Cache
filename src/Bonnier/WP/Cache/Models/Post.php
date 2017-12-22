@@ -24,15 +24,15 @@ class Post
 
         add_action('draft_to_publish', [__CLASS__, 'publish_post'], 10, 1);
         add_action('untrashed_post', [__CLASS__, 'publish_post'], 10, 1);
-
     }
 
-    public static function publish_post($publishedPostID) {
+    public static function publish_post($publishedPostID)
+    {
         $publishedPost = get_post($publishedPostID);
 
         // Skip update on attachment & inherit
         if (! ('publish' === $publishedPost->post_status
-                || ( 'attachment' === get_post_type($publishedPost) && 'inherit' === $publishedPost->post_status))
+                || ('attachment' === get_post_type($publishedPost) && 'inherit' === $publishedPost->post_status))
             || is_post_type_hierarchical($publishedPost->post_type)
         ) {
             return;
@@ -41,14 +41,15 @@ class Post
         CacheApi::add($publishedPost->ID);
     }
 
-    public static function update_posts($changedPostID) {
+    public static function update_posts($changedPostID)
+    {
         $changedPost = get_post($changedPostID);
 
         global $post;
         $deleteOldFlag = false;
 
-        if ( !('publish' === $changedPost->post_status
-                || ( 'attachment' === get_post_type($changedPost)
+        if (!('publish' === $changedPost->post_status
+                || ('attachment' === get_post_type($changedPost)
                     && 'inherit' === $changedPost->post_status)
             ) || is_post_type_hierarchical($changedPost->post_type)
         ) {
@@ -56,19 +57,19 @@ class Post
         }
 
         // Post name has changed. Clean old URL
-        if($changedPost->post_name != $post->post_name) {
+        if ($changedPost->post_name != $post->post_name) {
             $deleteOldFlag = true;
         }
 
         // Check if the category has changed. If so, clean old URL
         $newPostCategory = get_term($_REQUEST['acf'][static::ACF_CATEGORY_ID]);
         $oldPostCategory = get_the_category($post->ID)[0];
-        if($newPostCategory->term_id != $oldPostCategory->term_id) {
+        if ($newPostCategory->term_id != $oldPostCategory->term_id) {
             $deleteOldFlag = true;
         }
 
         // Delete if flagged
-        if($deleteOldFlag) {
+        if ($deleteOldFlag) {
             CacheApi::delete($changedPost->ID);
 
             // If delete is triggered add(!) the new one.
@@ -79,7 +80,8 @@ class Post
         CacheApi::update($changedPost->ID);
     }
 
-    public static function remove_post($postID) {
+    public static function remove_post($postID)
+    {
 
         // if the post we try to trash is current published,
 
