@@ -13,6 +13,8 @@ class Post
     // if they ever are.
     const ACF_CATEGORY_ID = 'field_58e39a7118284';
 
+    private static $postTypes = ['contenthub_composite', 'post'];
+
     public static function watch_post_changes(SettingsPage $settingsPage)
     {
         self::$settings = $settingsPage;
@@ -32,6 +34,10 @@ class Post
     {
         $publishedPost = get_post($publishedPostID);
 
+        if(!in_array($publishedPost->post_type, self::$postTypes)) {
+            return;
+        }
+
         // Skip update on attachment & inherit
         if (! ('publish' === $publishedPost->post_status
                 || ('attachment' === get_post_type($publishedPost) && 'inherit' === $publishedPost->post_status))
@@ -46,6 +52,10 @@ class Post
     public static function update_post($changedPostID)
     {
         $changedPost = get_post($changedPostID);
+
+        if(!in_array($changedPost->post_type, self::$postTypes)) {
+            return;
+        }
 
         global $post;
         $deleteOldFlag = false;
@@ -84,6 +94,11 @@ class Post
 
     public static function remove_post($postID)
     {
+        $changedPost = get_post($postID);
+
+        if(!in_array($changedPost->post_type, self::$postTypes)) {
+            return;
+        }
 
         // if the post we try to trash is current published,
 
