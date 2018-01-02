@@ -34,7 +34,7 @@ class Post
     {
         $publishedPost = get_post($publishedPostID);
 
-        if(!in_array($publishedPost->post_type, self::$postTypes)) {
+        if (!in_array($publishedPost->post_type, self::$postTypes)) {
             return;
         }
 
@@ -53,7 +53,7 @@ class Post
     {
         $changedPost = get_post($changedPostID);
 
-        if(!in_array($changedPost->post_type, self::$postTypes)) {
+        if (!in_array($changedPost->post_type, self::$postTypes)) {
             return;
         }
 
@@ -96,7 +96,7 @@ class Post
     {
         $changedPost = get_post($postID);
 
-        if(!in_array($changedPost->post_type, self::$postTypes)) {
+        if (!in_array($changedPost->post_type, self::$postTypes)) {
             return;
         }
 
