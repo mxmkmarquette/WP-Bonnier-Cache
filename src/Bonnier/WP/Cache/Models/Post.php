@@ -13,7 +13,7 @@ class Post
     // if they ever are.
     const ACF_CATEGORY_ID = 'field_58e39a7118284';
 
-    private static $postTypes = ['contenthub_composite', 'post'];
+    const POST_TYPES = ['contenthub_composite', 'post'];
 
     public static function watch_post_changes(SettingsPage $settingsPage)
     {
@@ -34,7 +34,7 @@ class Post
     {
         $publishedPost = get_post($publishedPostID);
 
-        if (!in_array($publishedPost->post_type, self::$postTypes)) {
+        if (!in_array($publishedPost->post_type, static::POST_TYPES)) {
             return;
         }
 
@@ -53,7 +53,7 @@ class Post
     {
         $changedPost = get_post($changedPostID);
 
-        if (!in_array($changedPost->post_type, self::$postTypes)) {
+        if (!in_array($changedPost->post_type, static::POST_TYPES)) {
             return;
         }
 
@@ -96,7 +96,7 @@ class Post
     {
         $changedPost = get_post($postID);
 
-        if (!in_array($changedPost->post_type, self::$postTypes)) {
+        if (!in_array($changedPost->post_type, static::POST_TYPES)) {
             return;
         }
 
