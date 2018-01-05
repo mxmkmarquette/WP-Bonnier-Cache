@@ -55,7 +55,6 @@ class Post
 
     public static function url_changed($changedPostID, $oldLink, $newLink)
     {
-
         $changedPost = get_post($changedPostID);
 
         if (!in_array($changedPost->post_type, static::POST_TYPES) || $changedPost->post_status !== 'publish') {
