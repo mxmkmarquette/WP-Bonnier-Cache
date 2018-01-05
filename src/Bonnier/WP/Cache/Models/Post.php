@@ -4,6 +4,8 @@ namespace Bonnier\WP\Cache\Models;
 
 use Bonnier\WP\Cache\Services\CacheApi;
 use Bonnier\WP\Cache\Settings\SettingsPage;
+use Bonnier\WP\ContentHub\Editor\Models\WpComposite;
+use WP_Post;
 
 class Post
 {
@@ -11,9 +13,9 @@ class Post
     // Figure out a way to dynamically fetch this variable - otherwise
     // REMEMBER to update this field whenever ACF field keys are updated
     // if they ever are.
-    const ACF_CATEGORY_ID = 'field_58e39a7118284';
 
-    const POST_TYPES = ['contenthub_composite', 'post'];
+
+    const POST_TYPES = ['contenthub_composite', 'post', 'page'];
 
     public static function watch_post_changes(SettingsPage $settingsPage)
     {
@@ -24,6 +26,7 @@ class Post
         add_action('publish_to_draft', [__CLASS__, 'remove_post'], 10, 1);
 
         // publish post
+        add_action(WpComposite::SLUG_CHANGE_HOOK, [__CLASS__, 'url_changed'], 10, 3);
         add_action('publish_to_publish', [__CLASS__, 'update_post'], 10, 1);
 
         add_action('draft_to_publish', [__CLASS__, 'publish_post'], 10, 1);
@@ -34,62 +37,33 @@ class Post
     {
         $publishedPost = get_post($publishedPostID);
 
-        if (!in_array($publishedPost->post_type, static::POST_TYPES)) {
-            return;
-        }
-
-        // Skip update on attachment & inherit
-        if (! ('publish' === $publishedPost->post_status
-                || ('attachment' === get_post_type($publishedPost) && 'inherit' === $publishedPost->post_status))
-            || is_post_type_hierarchical($publishedPost->post_type)
-        ) {
+        if (!in_array($publishedPost->post_type, static::POST_TYPES) || $publishedPost->post_status !== 'publish') {
             return;
         }
 
         CacheApi::add($publishedPost->ID);
     }
 
-    public static function update_post($changedPostID)
+    public static function update_post($postId)
     {
+        $post = get_post($postId);
+        if (!in_array($post->post_type, static::POST_TYPES) || $post->post_status !== 'publish') {
+            return;
+        }
+        CacheApi::post(CacheApi::CACHE_UPDATE, get_permalink($postId));
+    }
+
+    public static function url_changed($changedPostID, $oldLink, $newLink)
+    {
+
         $changedPost = get_post($changedPostID);
 
-        if (!in_array($changedPost->post_type, static::POST_TYPES)) {
+        if (!in_array($changedPost->post_type, static::POST_TYPES) || $changedPost->post_status !== 'publish') {
             return;
         }
 
-        global $post;
-        $deleteOldFlag = false;
-
-        if (!('publish' === $changedPost->post_status
-                || ('attachment' === get_post_type($changedPost)
-                    && 'inherit' === $changedPost->post_status)
-            ) || is_post_type_hierarchical($changedPost->post_type)
-        ) {
-            return;
-        }
-
-        // Post name has changed. Clean old URL
-        if ($changedPost->post_name != $post->post_name) {
-            $deleteOldFlag = true;
-        }
-
-        // Check if the category has changed. If so, clean old URL
-        $newPostCategory = get_term($_REQUEST['acf'][static::ACF_CATEGORY_ID]);
-        $oldPostCategory = get_the_category($post->ID)[0];
-        if ($newPostCategory->term_id != $oldPostCategory->term_id) {
-            $deleteOldFlag = true;
-        }
-
-        // Delete if flagged
-        if ($deleteOldFlag) {
-            CacheApi::delete($changedPost->ID);
-
-            // If delete is triggered add(!) the new one.
-            CacheApi::add($changedPost->ID);
-            return;
-        }
-
-        CacheApi::update($changedPost->ID);
+        CacheApi::post(CacheApi::CACHE_DELETE, $oldLink); // Remove old url
+        CacheApi::post(CacheApi::CACHE_UPDATE, $newLink); // Add new
     }
 
     public static function remove_post($postID)
