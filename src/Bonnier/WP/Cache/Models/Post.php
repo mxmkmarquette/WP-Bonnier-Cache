@@ -50,7 +50,8 @@ class Post
         if (!in_array($post->post_type, static::POST_TYPES) || $post->post_status !== 'publish') {
             return;
         }
-        CacheApi::post(CacheApi::CACHE_UPDATE, get_permalink($postId));
+        CacheApi::post(CacheApi::CACHE_DELETE, get_permalink()); // Remove old url
+        CacheApi::post(CacheApi::CACHE_UPDATE, get_permalink($postId)); // Add new
     }
 
     public static function url_changed($changedPostID, $oldLink, $newLink)
