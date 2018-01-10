@@ -50,8 +50,24 @@ class Post
         if (!in_array($post->post_type, static::POST_TYPES) || $post->post_status !== 'publish') {
             return;
         }
-        CacheApi::post(CacheApi::CACHE_DELETE, get_permalink()); // Remove old url
+
+        CacheApi::post(CacheApi::CACHE_UPDATE, get_permalink()); // Remove old url
         CacheApi::post(CacheApi::CACHE_UPDATE, get_permalink($postId)); // Add new
+
+        if ($postId instanceof WP_Post) {
+            $postId = $postId->ID;
+        }
+
+        $current_language_on_post = pll_get_post_language($postId);
+        $translations = pll_get_post_translations($postId);
+
+        // Unset the current one, due to we just updated it above
+        unset($translations[$current_language_on_post]);
+
+        // Call update on all other articles
+        foreach ($translations as $translation) {
+            CacheApi::post(CacheApi::CACHE_UPDATE, get_permalink($translation)); // Add new
+        }
     }
 
     public static function url_changed($changedPostID, $oldLink, $newLink)
@@ -62,7 +78,7 @@ class Post
             return;
         }
 
-        CacheApi::post(CacheApi::CACHE_DELETE, $oldLink); // Remove old url
+        CacheApi::post(CacheApi::CACHE_UPDATE, $oldLink); // Remove old url
         CacheApi::post(CacheApi::CACHE_UPDATE, $newLink); // Add new
     }
 
@@ -76,7 +92,7 @@ class Post
 
         // if the post we try to trash is current published,
 
-        CacheApi::delete($postID);
+        CacheApi::update($postID);
     }
 
     /**
@@ -86,7 +102,7 @@ class Post
      */
     public static function delete_post($postId)
     {
-        return CacheApi::delete($postId);
+        return CacheApi::update($postId);
     }
 
     public static function is_published($postId)
