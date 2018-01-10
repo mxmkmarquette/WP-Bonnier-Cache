@@ -41,7 +41,7 @@ class Post
             return;
         }
 
-        CacheApi::add($publishedPost->ID);
+        CacheApi::update($publishedPost->ID);
     }
 
     public static function update_post($postId)
@@ -51,7 +51,7 @@ class Post
             return;
         }
 
-        CacheApi::post(CacheApi::CACHE_DELETE, get_permalink()); // Remove old url
+        CacheApi::post(CacheApi::CACHE_UPDATE, get_permalink()); // Remove old url
         CacheApi::post(CacheApi::CACHE_UPDATE, get_permalink($postId)); // Add new
 
         if ($postId instanceof WP_Post) {
@@ -78,7 +78,7 @@ class Post
             return;
         }
 
-        CacheApi::post(CacheApi::CACHE_DELETE, $oldLink); // Remove old url
+        CacheApi::post(CacheApi::CACHE_UPDATE, $oldLink); // Remove old url
         CacheApi::post(CacheApi::CACHE_UPDATE, $newLink); // Add new
     }
 
@@ -92,7 +92,7 @@ class Post
 
         // if the post we try to trash is current published,
 
-        CacheApi::delete($postID);
+        CacheApi::update($postID);
     }
 
     /**
@@ -102,7 +102,7 @@ class Post
      */
     public static function delete_post($postId)
     {
-        return CacheApi::delete($postId);
+        return CacheApi::update($postId);
     }
 
     public static function is_published($postId)

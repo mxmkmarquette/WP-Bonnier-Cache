@@ -81,7 +81,7 @@ class CacheApi
             $contentUrl = $categoryLink.'/'.$post->post_name;
         }
 
-        return self::post(self::CACHE_ADD, $contentUrl);
+        return self::post(self::CACHE_UPDATE, $contentUrl);
     }
 
     /**
@@ -109,7 +109,7 @@ class CacheApi
             }
         }
 
-        return self::post(self::CACHE_DELETE, $contentUrl);
+        return self::post(self::CACHE_UPDATE, $contentUrl);
     }
 
     /**
