@@ -41,7 +41,7 @@ class Post
             return;
         }
 
-        CacheApi::update($publishedPost->ID);
+        CacheApi::add($publishedPost->ID);
     }
 
     public static function update_post($postId)
