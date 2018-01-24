@@ -11,6 +11,7 @@ class CacheApi
     const CACHE_ADD = '/api/v1/add';
     const CACHE_UPDATE = '/api/v1/update';
     const CACHE_DELETE = '/api/v1/delete';
+    const CACHE_STATUS = '/api/v1/status';
 
     const ACF_CATEGORY_ID = 'field_58e39a7118284';
 
@@ -25,6 +26,10 @@ class CacheApi
         if (!empty($host_url)) {
             self::$client = new Client([
                 'base_uri' => $host_url,
+                'curl' => [
+                    CURLOPT_SSL_VERIFYHOST => false,
+                    CURLOPT_SSL_VERIFYPEER => false,
+                ]
             ]);
         }
     }
@@ -117,7 +122,7 @@ class CacheApi
      * @param $url
      * @return bool
      */
-    public static function post($uri, $url)
+    public static function post($uri, $url, $getResponse = false)
     {
         if (is_null(self::$client)) {
             return false;
@@ -131,6 +136,9 @@ class CacheApi
 
         if (200 === $response->getStatusCode()) {
             $result = \json_decode($response->getBody());
+            if($getResponse) {
+                return $result;
+            }
             return isset($result->status) && 200 == $result->status;
         }
 

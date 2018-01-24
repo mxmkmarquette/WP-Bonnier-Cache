@@ -3,13 +3,14 @@
  * Plugin Name: WP Bonnier Cache
  * Plugin URI: http://bonnierpublications.com
  * Description: Bonnier Cache Plugin
- * Version: 1.2.4
+ * Version: 1.2.1
  * Author: Magnus Flor
  * Author URI: http://bonnierpublications.com
  */
 
 namespace Bonnier\WP\Cache;
 
+use Bonnier\WP\Cache\Admin\PostMetaBox;
 use Bonnier\WP\Cache\Models\Post;
 use Bonnier\WP\Cache\Services\CacheApi;
 use Bonnier\WP\Cache\Settings\SettingsPage;
@@ -59,6 +60,7 @@ class WpBonnierCache
     {
         Post::watch_post_changes($this->settings);
         CacheApi::bootstrap($this->settings);
+        PostMetaBox::register($this->settings);
     }
 
     public static function instance()
