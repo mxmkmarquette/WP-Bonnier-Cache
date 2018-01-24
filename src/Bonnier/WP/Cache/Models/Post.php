@@ -22,7 +22,7 @@ class Post
         add_action('publish_to_draft', [__CLASS__, 'remove_post'], 10, 1);
 
         // publish post
-        if(defined('SLUG_CHANGE_HOOK')) {
+        if (defined('SLUG_CHANGE_HOOK')) {
             // Only trigger if ContentHub plugin is added
             add_action(WpComposite::SLUG_CHANGE_HOOK, [__CLASS__, 'url_changed'], 10, 3);
         }
