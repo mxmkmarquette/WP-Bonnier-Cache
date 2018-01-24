@@ -40,7 +40,7 @@ class PostMetaBox
 
     private static function printClearTime($cacheVendor, $clearTime)
     {
-        $clearString = $clearTime ? Carbon::parse($clearTime)->diffForHumans() : 'Not cleared yet';
+        $clearString = $clearTime ? static::dateTimeToDiff($clearTime) : 'Not cleared yet';
         printf("<strong>%s:</strong> %s <br>", $cacheVendor, $clearString);
     }
 
@@ -54,5 +54,13 @@ class PostMetaBox
             <span>Warning this will refresh the page so save your work</span>',
             static::MANUEL_TRIGGER_BUTTON
         );
+    }
+
+    private static function dateTimeToDiff($clearTime)
+    {
+        if(class_exists(Carbon::class)) {
+            return Carbon::parse($clearTime)->diffForHumans();
+        }
+        return $clearTime;
     }
 }
