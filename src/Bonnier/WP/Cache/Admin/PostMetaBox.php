@@ -58,7 +58,7 @@ class PostMetaBox
 
     private static function dateTimeToDiff($clearTime)
     {
-        if(class_exists(Carbon::class)) {
+        if (class_exists(Carbon::class)) {
             return Carbon::parse($clearTime)->diffForHumans();
         }
         return $clearTime;
