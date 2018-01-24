@@ -136,7 +136,7 @@ class CacheApi
 
         if (200 === $response->getStatusCode()) {
             $result = \json_decode($response->getBody());
-            if($getResponse) {
+            if ($getResponse) {
                 return $result;
             }
             return isset($result->status) && 200 == $result->status;
