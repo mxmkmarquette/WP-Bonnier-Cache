@@ -10,12 +10,8 @@ use WP_Post;
 class Post
 {
     private static $settings;
-    // Figure out a way to dynamically fetch this variable - otherwise
-    // REMEMBER to update this field whenever ACF field keys are updated
-    // if they ever are.
 
-
-    const POST_TYPES = ['contenthub_composite', 'post', 'page'];
+    const POST_TYPES = ['review', 'contenthub_composite', 'post', 'page'];
 
     public static function watch_post_changes(SettingsPage $settingsPage)
     {
@@ -26,7 +22,10 @@ class Post
         add_action('publish_to_draft', [__CLASS__, 'remove_post'], 10, 1);
 
         // publish post
-        add_action(WpComposite::SLUG_CHANGE_HOOK, [__CLASS__, 'url_changed'], 10, 3);
+        if(defined('SLUG_CHANGE_HOOK')) {
+            // Only trigger if ContentHub plugin is added
+            add_action(WpComposite::SLUG_CHANGE_HOOK, [__CLASS__, 'url_changed'], 10, 3);
+        }
         add_action('publish_to_publish', [__CLASS__, 'update_post'], 10, 1);
 
         add_action('draft_to_publish', [__CLASS__, 'publish_post'], 10, 1);
