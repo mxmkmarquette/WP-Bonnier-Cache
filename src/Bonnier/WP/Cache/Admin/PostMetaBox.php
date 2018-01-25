@@ -26,9 +26,9 @@ class PostMetaBox
     public static function meta_box_content($post)
     {
         $status = CacheApi::post(CacheApi::CACHE_STATUS, get_permalink($post->ID), true);
-        static::printClearTime('CloudFlare', $status->cloudflare_called_at ?? null);
-        static::printClearTime('Facebook', $status->facebook_called_at ?? null);
-        static::printClearTime('Cxense', $status->cxense_called_at ?? null);
+        static::printClearTime('CloudFlare', isset($status->cloudflare_called_at) ? $status->cloudflare_called_at : null);
+        static::printClearTime('Facebook', isset($status->facebook_called_at) ? $status->facebook_called_at : null);
+        static::printClearTime('Cxense', isset($status->cxense_called_at) ? $status->cxense_called_at : null);
         static::printManuelTriggerButton();
     }
     public static function save_meta_box_settings($post)
