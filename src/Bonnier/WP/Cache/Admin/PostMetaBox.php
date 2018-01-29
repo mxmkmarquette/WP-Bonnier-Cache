@@ -18,7 +18,13 @@ class PostMetaBox
     public static function register()
     {
         add_action('do_meta_boxes', function () {
-            add_meta_box('bp_wp_bonnier_cache', 'Bonnier Cache', [__CLASS__, 'meta_box_content'], null, 'side');
+            add_meta_box(
+                'bp_wp_bonnier_cache',
+                'Bonnier Cache',
+                [__CLASS__, 'meta_box_content'],
+                get_post_types(),
+                'side'
+            );
         });
         add_action('save_post', [__CLASS__, 'save_meta_box_settings']);
     }
