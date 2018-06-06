@@ -14,6 +14,12 @@ use Carbon\Carbon;
 class PostMetaBox
 {
     const MANUEL_TRIGGER_BUTTON = 'wp_bonnier_cache_meta_box_manuel_trigger_btn';
+    const CACHE_VENDORS = [
+        'Frontend',
+        'CloudFlare',
+        'Facebook',
+        'Cxense'
+    ];
 
     public static function register()
     {
@@ -32,9 +38,10 @@ class PostMetaBox
     public static function meta_box_content($post)
     {
         $status = CacheApi::post(CacheApi::CACHE_STATUS, get_permalink($post->ID), true);
-        static::printClearTime('CloudFlare', isset($status->cloudflare_called_at) ? $status->cloudflare_called_at : null);
-        static::printClearTime('Facebook', isset($status->facebook_called_at) ? $status->facebook_called_at : null);
-        static::printClearTime('Cxense', isset($status->cxense_called_at) ? $status->cxense_called_at : null);
+        foreach (self::CACHE_VENDORS as $vendor) {
+            $val = strtolower($vendor) . '_called_at';
+            static::printClearTime($vendor, isset($status->{$val}) ? $status->{$val} : null);
+        }
         static::printManuelTriggerButton();
     }
     public static function save_meta_box_settings($post)
