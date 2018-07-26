@@ -6,12 +6,13 @@
         {
             "name": "Bonnier Publications",
             "email": "interactive@bonnier.dk"
-        },
-        {
-            "name": "Magnus Flor",
-            "email": "magnus.johansen@bonnier.dk"
         }
     ],
+    "require": {
+        "guzzlehttp/guzzle": "^6.3",
+        "johnpbloch/wordpress": "4.9.7",
+        "bonnier/contenthub-editor": "dev-IVD"
+    },
     "autoload": {
         "psr-4": {
             "Bonnier\\WP\\Cache\\": "src"
