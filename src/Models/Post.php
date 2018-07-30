@@ -2,6 +2,7 @@
 
 namespace Bonnier\WP\Cache\Models;
 
+use Bonnier\Willow\MuPlugins\LanguageProvider;
 use Bonnier\WP\Cache\Services\CacheApi;
 use Bonnier\WP\Cache\Settings\SettingsPage;
 use Bonnier\WP\ContentHub\Editor\Models\WpComposite;
@@ -57,8 +58,8 @@ class Post
             $postId = $postId->ID;
         }
 
-        $current_language_on_post = pll_get_post_language($postId);
-        $translations = pll_get_post_translations($postId);
+        $current_language_on_post = LanguageProvider::getPostLanguage($postId);
+        $translations = LanguageProvider::getPostTranslations($postId);
 
         // Unset the current one, due to we just updated it above
         unset($translations[$current_language_on_post]);
