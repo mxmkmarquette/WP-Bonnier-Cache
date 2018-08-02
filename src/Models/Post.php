@@ -2,7 +2,7 @@
 
 namespace Bonnier\WP\Cache\Models;
 
-use Bonnier\Willow\MuPlugins\LanguageProvider;
+use Bonnier\Willow\MuPlugins\Helpers\LanguageProvider;
 use Bonnier\WP\Cache\Services\CacheApi;
 use Bonnier\WP\Cache\Settings\SettingsPage;
 use Bonnier\WP\ContentHub\Editor\Models\WpComposite;
