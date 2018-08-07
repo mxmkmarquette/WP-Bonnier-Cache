@@ -36,9 +36,11 @@
     ],
     "require": {
         "guzzlehttp/guzzle": "^6.3",
-        "johnpbloch/wordpress": "4.9.7",
         "bonnier/contenthub-editor": "dev-IVD",
         "bonnier/willow-mu-plugins": "dev-master"
+    },
+    "require-dev": {
+        "johnpbloch/wordpress": "^4.9"
     },
     "autoload": {
         "psr-4": {

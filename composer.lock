@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "45cac6cb3d5f136569fbe87002606553",
+    "content-hash": "1524e6bfda19e0971a4b519f06a9f0a7",
     "packages": [
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
@@ -27,16 +27,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BenjaminMedia/wp-cxense.git",
-                "reference": "51d023cbcbde215e33e21bd82123c37631450f5b"
+                "reference": "6c38d30a4a239e700d2bd8c89a35610f415b386d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenjaminMedia/wp-cxense/zipball/51d023cbcbde215e33e21bd82123c37631450f5b",
-                "reference": "51d023cbcbde215e33e21bd82123c37631450f5b",
+                "url": "https://api.github.com/repos/BenjaminMedia/wp-cxense/zipball/6c38d30a4a239e700d2bd8c89a35610f415b386d",
+                "reference": "6c38d30a4a239e700d2bd8c89a35610f415b386d",
                 "shasum": ""
             },
             "require": {
+                "bonnier/willow-mu-plugins": "dev-master",
                 "illuminate/support": "^5.6",
+                "johnpbloch/wordpress": "4.9.7",
                 "php": ">=7.1"
             },
             "type": "wordpress-plugin",
@@ -51,10 +53,6 @@
                     "name": "Bonnier Publications",
                     "email": "interactive@bonnier.dk",
                     "homepage": "http://bonnierpublications.com"
-                },
-                {
-                    "name": "Alf Henderson",
-                    "email": "alf.henderson@bonnier.dk"
                 }
             ],
             "description": "This plugin integrates your site with cXense by adding meta tags and calling the cXense api",
@@ -63,7 +61,7 @@
                 "plugin",
                 "wordpress"
             ],
-            "time": "2018-08-02T12:51:51+00:00"
+            "time": "2018-08-02T13:10:29+00:00"
         },
         {
             "name": "bonnier/contenthub-editor",
@@ -71,12 +69,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BenjaminMedia/wp-contenthub-editor.git",
-                "reference": "394a5c3e70df651cf89efb08c121a41c1c1ab4ac"
+                "reference": "b763a457f3467d2c415dfa37e7da087f378f8811"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenjaminMedia/wp-contenthub-editor/zipball/394a5c3e70df651cf89efb08c121a41c1c1ab4ac",
-                "reference": "394a5c3e70df651cf89efb08c121a41c1c1ab4ac",
+                "url": "https://api.github.com/repos/BenjaminMedia/wp-contenthub-editor/zipball/b763a457f3467d2c415dfa37e7da087f378f8811",
+                "reference": "b763a457f3467d2c415dfa37e7da087f378f8811",
                 "shasum": ""
             },
             "require": {
@@ -123,7 +121,7 @@
                 "plugin",
                 "wordpress"
             ],
-            "time": "2018-08-02T12:52:52+00:00"
+            "time": "2018-08-02T13:11:55+00:00"
         },
         {
             "name": "bonnier/php-video-helper",
@@ -178,20 +176,20 @@
             "source": {
                 "type": "git",
                 "url": "git@github.com:BenjaminMedia/willow-mu-plugins.git",
-                "reference": "c3d1869d2bf0beba9c994e0116345986e85270c8"
+                "reference": "2442a1b027305db79fe2609d648970896a31a287"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenjaminMedia/willow-mu-plugins/zipball/c3d1869d2bf0beba9c994e0116345986e85270c8",
-                "reference": "c3d1869d2bf0beba9c994e0116345986e85270c8",
+                "url": "https://api.github.com/repos/BenjaminMedia/willow-mu-plugins/zipball/2442a1b027305db79fe2609d648970896a31a287",
+                "reference": "2442a1b027305db79fe2609d648970896a31a287",
                 "shasum": ""
             },
             "require": {
                 "illuminate/support": "^5.6",
-                "johnpbloch/wordpress": "4.9.7",
                 "php": ">=7.1"
             },
             "require-dev": {
+                "johnpbloch/wordpress": "^4.9",
                 "lucatume/wp-browser": "^2.1",
                 "phpunit/phpunit": "7.1.*"
             },
@@ -199,7 +197,7 @@
             "autoload": {
                 "psr-4": {
                     "Bonnier\\Willow\\MuPlugins\\": "src",
-                    "Tests\\": "tests"
+                    "Bonnier\\Willow\\MuPlugins\\Tests\\": "tests"
                 }
             },
             "scripts": {
@@ -221,7 +219,7 @@
                 "source": "https://github.com/BenjaminMedia/willow-mu-plugins/tree/master",
                 "issues": "https://github.com/BenjaminMedia/willow-mu-plugins/issues"
             },
-            "time": "2018-08-02T12:54:46+00:00"
+            "time": "2018-08-07T10:01:35+00:00"
         },
         {
             "name": "bonnier/wp-bonnier-redirect",
@@ -929,16 +927,16 @@
         },
         {
             "name": "nesbot/carbon",
-            "version": "1.32.0",
+            "version": "1.33.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/briannesbitt/Carbon.git",
-                "reference": "64563e2b9f69e4db1b82a60e81efa327a30ff343"
+                "reference": "55667c1007a99e82030874b1bb14d24d07108413"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/64563e2b9f69e4db1b82a60e81efa327a30ff343",
-                "reference": "64563e2b9f69e4db1b82a60e81efa327a30ff343",
+                "url": "https://api.github.com/repos/briannesbitt/Carbon/zipball/55667c1007a99e82030874b1bb14d24d07108413",
+                "reference": "55667c1007a99e82030874b1bb14d24d07108413",
                 "shasum": ""
             },
             "require": {
@@ -980,7 +978,7 @@
                 "datetime",
                 "time"
             ],
-            "time": "2018-07-05T06:59:26+00:00"
+            "time": "2018-08-07T08:39:47+00:00"
         },
         {
             "name": "philippbaschke/acf-pro-installer",
@@ -1187,16 +1185,16 @@
         },
         {
             "name": "symfony/polyfill-mbstring",
-            "version": "v1.8.0",
+            "version": "v1.9.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/polyfill-mbstring.git",
-                "reference": "3296adf6a6454a050679cde90f95350ad604b171"
+                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/3296adf6a6454a050679cde90f95350ad604b171",
-                "reference": "3296adf6a6454a050679cde90f95350ad604b171",
+                "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/d0cd638f4634c16d8df4508e847f14e9e43168b8",
+                "reference": "d0cd638f4634c16d8df4508e847f14e9e43168b8",
                 "shasum": ""
             },
             "require": {
@@ -1208,7 +1206,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.8-dev"
+                    "dev-master": "1.9-dev"
                 }
             },
             "autoload": {
@@ -1242,7 +1240,7 @@
                 "portable",
                 "shim"
             ],
-            "time": "2018-04-26T10:06:28+00:00"
+            "time": "2018-08-06T14:22:27+00:00"
         },
         {
             "name": "symfony/translation",
