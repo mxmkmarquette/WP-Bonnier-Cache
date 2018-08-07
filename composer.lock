@@ -4,46 +4,29 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "12d1b8467723c263d5697f159de347fa",
+    "content-hash": "f220a0493bef05f7277f31c93c6bd3e4",
     "packages": [
-        {
-            "name": "advanced-custom-fields/advanced-custom-fields-pro",
-            "version": "5.7.1",
-            "dist": {
-                "type": "zip",
-                "url": "https://connect.advancedcustomfields.com/index.php?p=pro&a=download&t=5.7.1",
-                "reference": null,
-                "shasum": null
-            },
-            "require": {
-                "composer/installers": "^1.0",
-                "philippbaschke/acf-pro-installer": "^1.0"
-            },
-            "type": "wordpress-plugin"
-        },
         {
             "name": "bonnier/contenthub-editor",
             "version": "dev-IVD",
             "source": {
                 "type": "git",
                 "url": "https://github.com/BenjaminMedia/wp-contenthub-editor.git",
-                "reference": "6ed1f95f75146f618548b2346743a0a37b166607"
+                "reference": "67a31fca8f4d76376a59b40d87423f1a07ff0a68"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenjaminMedia/wp-contenthub-editor/zipball/6ed1f95f75146f618548b2346743a0a37b166607",
-                "reference": "6ed1f95f75146f618548b2346743a0a37b166607",
+                "url": "https://api.github.com/repos/BenjaminMedia/wp-contenthub-editor/zipball/67a31fca8f4d76376a59b40d87423f1a07ff0a68",
+                "reference": "67a31fca8f4d76376a59b40d87423f1a07ff0a68",
                 "shasum": ""
             },
             "require": {
-                "advanced-custom-fields/advanced-custom-fields-pro": "*",
                 "bonnier/php-video-helper": "1.0.*",
-                "bonnier/willow-mu-plugins": "dev-master",
-                "bonnier/wp-bonnier-cache": "dev-IVD",
-                "bonnier/wp-bonnier-redirect": "dev-IVD",
+                "bonnier/willow-mu-plugins": "1.0.0",
                 "composer/installers": "~1.0",
                 "guzzlehttp/guzzle": "^6.3",
                 "illuminate/support": "^5.6",
+                "junaidbhura/advanced-custom-fields-pro": "*",
                 "php": ">=7.1",
                 "wpackagist-plugin/amazon-s3-and-cloudfront": "^1.4"
             },
@@ -77,7 +60,7 @@
                 "plugin",
                 "wordpress"
             ],
-            "time": "2018-08-07T10:41:25+00:00"
+            "time": "2018-08-07T13:26:29+00:00"
         },
         {
             "name": "bonnier/php-video-helper",
@@ -128,16 +111,16 @@
         },
         {
             "name": "bonnier/willow-mu-plugins",
-            "version": "dev-master",
+            "version": "v1.0.0",
             "source": {
                 "type": "git",
                 "url": "git@github.com:BenjaminMedia/willow-mu-plugins.git",
-                "reference": "2442a1b027305db79fe2609d648970896a31a287"
+                "reference": "c12da365f108bafdd08b8445e7552b3eb7dba409"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenjaminMedia/willow-mu-plugins/zipball/2442a1b027305db79fe2609d648970896a31a287",
-                "reference": "2442a1b027305db79fe2609d648970896a31a287",
+                "url": "https://api.github.com/repos/BenjaminMedia/willow-mu-plugins/zipball/c12da365f108bafdd08b8445e7552b3eb7dba409",
+                "reference": "c12da365f108bafdd08b8445e7552b3eb7dba409",
                 "shasum": ""
             },
             "require": {
@@ -172,51 +155,10 @@
             ],
             "description": "A collection of Must Use WordPress Plugins for Willow",
             "support": {
-                "source": "https://github.com/BenjaminMedia/willow-mu-plugins/tree/master",
+                "source": "https://github.com/BenjaminMedia/willow-mu-plugins/tree/v1.0.0",
                 "issues": "https://github.com/BenjaminMedia/willow-mu-plugins/issues"
             },
-            "time": "2018-08-07T10:01:35+00:00"
-        },
-        {
-            "name": "bonnier/wp-bonnier-redirect",
-            "version": "dev-IVD",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/BenjaminMedia/wp-bonnier-redirect.git",
-                "reference": "edfe05d864fa8b324c432dd9d0a475d4752cd685"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/BenjaminMedia/wp-bonnier-redirect/zipball/edfe05d864fa8b324c432dd9d0a475d4752cd685",
-                "reference": "edfe05d864fa8b324c432dd9d0a475d4752cd685",
-                "shasum": ""
-            },
-            "require": {
-                "bonnier/contenthub-editor": "dev-IVD",
-                "bonnier/wp-bonnier-cache": "dev-IVD",
-                "illuminate/support": "^5.6",
-                "league/csv": "^9.1",
-                "php": ">=7.1"
-            },
-            "require-dev": {
-                "johnpbloch/wordpress": "^4.9"
-            },
-            "type": "wordpress-plugin",
-            "autoload": {
-                "psr-4": {
-                    "Bonnier\\WP\\Redirect\\": "src"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "Bonnier Publications",
-                    "email": "interactive@bonnier.dk",
-                    "homepage": "http://bonnierpublications.com"
-                }
-            ],
-            "description": "Redirect for Bonnier integration with Custom Permalink and Polylang",
-            "time": "2018-08-07T10:39:24+00:00"
+            "time": "2018-08-07T12:50:49+00:00"
         },
         {
             "name": "composer/installers",
@@ -689,71 +631,58 @@
             "time": "2018-07-26T15:32:11+00:00"
         },
         {
-            "name": "league/csv",
-            "version": "9.1.4",
+            "name": "junaidbhura/advanced-custom-fields-pro",
+            "version": "5.7.2",
+            "dist": {
+                "type": "zip",
+                "url": "https://www.advancedcustomfields.com",
+                "reference": null,
+                "shasum": null
+            },
+            "require": {
+                "junaidbhura/composer-wp-pro-plugins": "*"
+            },
+            "type": "wordpress-plugin"
+        },
+        {
+            "name": "junaidbhura/composer-wp-pro-plugins",
+            "version": "1.0.3",
             "source": {
                 "type": "git",
-                "url": "https://github.com/thephpleague/csv.git",
-                "reference": "9c8ad06fb5d747c149875beb6133566c00eaa481"
+                "url": "https://github.com/junaidbhura/composer-wp-pro-plugins.git",
+                "reference": "94a36f218eba29877619f2745c8b9821479b72ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/thephpleague/csv/zipball/9c8ad06fb5d747c149875beb6133566c00eaa481",
-                "reference": "9c8ad06fb5d747c149875beb6133566c00eaa481",
+                "url": "https://api.github.com/repos/junaidbhura/composer-wp-pro-plugins/zipball/94a36f218eba29877619f2745c8b9821479b72ab",
+                "reference": "94a36f218eba29877619f2745c8b9821479b72ab",
                 "shasum": ""
             },
             "require": {
-                "ext-mbstring": "*",
-                "php": ">=7.0.10"
+                "composer-plugin-api": "^1.1",
+                "vlucas/phpdotenv": "^2.4"
             },
-            "require-dev": {
-                "ext-curl": "*",
-                "friendsofphp/php-cs-fixer": "^2.0",
-                "phpstan/phpstan": "^0.9.2",
-                "phpstan/phpstan-phpunit": "^0.9.4",
-                "phpstan/phpstan-strict-rules": "^0.9.0",
-                "phpunit/phpunit": "^6.0"
-            },
-            "suggest": {
-                "ext-iconv": "Needed to ease transcoding CSV using iconv stream filters"
-            },
-            "type": "library",
+            "type": "composer-plugin",
             "extra": {
-                "branch-alias": {
-                    "dev-master": "9.x-dev"
-                }
+                "class": "Junaidbhura\\Composer\\WPProPlugins\\Installer"
             },
             "autoload": {
                 "psr-4": {
-                    "League\\Csv\\": "src"
-                },
-                "files": [
-                    "src/functions_include.php"
-                ]
+                    "Junaidbhura\\Composer\\WPProPlugins\\": "",
+                    "Junaidbhura\\Composer\\WPProPlugins\\Plugins\\": "plugins"
+                }
             },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
             "authors": [
                 {
-                    "name": "Ignace Nyamagana Butera",
-                    "email": "nyamsprod@gmail.com",
-                    "homepage": "https://github.com/nyamsprod/",
-                    "role": "Developer"
+                    "name": "Junaid Bhura",
+                    "email": "info@junaidbhura.com"
                 }
             ],
-            "description": "Csv data manipulation made easy in PHP",
-            "homepage": "http://csv.thephpleague.com",
-            "keywords": [
-                "csv",
-                "export",
-                "filter",
-                "import",
-                "read",
-                "write"
-            ],
-            "time": "2018-05-01T18:32:48+00:00"
+            "support": {
+                "source": "https://github.com/junaidbhura/composer-wp-pro-plugins/tree/1.0.3",
+                "issues": "https://github.com/junaidbhura/composer-wp-pro-plugins/issues"
+            },
+            "time": "2018-07-20T09:39:44+00:00"
         },
         {
             "name": "nesbot/carbon",
@@ -809,62 +738,6 @@
                 "time"
             ],
             "time": "2018-08-07T08:39:47+00:00"
-        },
-        {
-            "name": "philippbaschke/acf-pro-installer",
-            "version": "v1.0.2",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/PhilippBaschke/acf-pro-installer.git",
-                "reference": "f18e537183958159ef5f6cb1f5b684f59d55f3eb"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/PhilippBaschke/acf-pro-installer/zipball/f18e537183958159ef5f6cb1f5b684f59d55f3eb",
-                "reference": "f18e537183958159ef5f6cb1f5b684f59d55f3eb",
-                "shasum": ""
-            },
-            "require": {
-                "composer-plugin-api": "^1.0",
-                "php": ">=5.5",
-                "vlucas/phpdotenv": "^2.2"
-            },
-            "require-dev": {
-                "composer/composer": "1.0.*",
-                "phpunit/phpunit": "4.8.*",
-                "satooshi/php-coveralls": "1.*",
-                "squizlabs/php_codesniffer": "2.*"
-            },
-            "type": "composer-plugin",
-            "extra": {
-                "class": "PhilippBaschke\\ACFProInstaller\\Plugin"
-            },
-            "autoload": {
-                "psr-4": {
-                    "PhilippBaschke\\ACFProInstaller\\": "src/ACFProInstaller"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Philipp Baschke",
-                    "email": "philipp@baschke.com"
-                }
-            ],
-            "description": "An install helper for Advanced Custom Fields PRO",
-            "keywords": [
-                "acf",
-                "composer",
-                "env",
-                "plugin",
-                "pro",
-                "wordpress",
-                "wp"
-            ],
-            "time": "2016-07-20T10:19:36+00:00"
         },
         {
             "name": "psr/container",
@@ -1345,8 +1218,7 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "bonnier/contenthub-editor": 20,
-        "bonnier/willow-mu-plugins": 20
+        "bonnier/contenthub-editor": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,

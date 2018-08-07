@@ -55,7 +55,7 @@
     "require": {
         "guzzlehttp/guzzle": "^6.3",
         "bonnier/contenthub-editor": "dev-IVD",
-        "bonnier/willow-mu-plugins": "dev-master"
+        "bonnier/willow-mu-plugins": "^1.0.0"
     },
     "require-dev": {
         "johnpbloch/wordpress": "^4.9"
