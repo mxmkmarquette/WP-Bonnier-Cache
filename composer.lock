@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "1524e6bfda19e0971a4b519f06a9f0a7",
+    "content-hash": "12d1b8467723c263d5697f159de347fa",
     "packages": [
         {
             "name": "advanced-custom-fields/advanced-custom-fields-pro",
@@ -27,12 +27,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BenjaminMedia/wp-contenthub-editor.git",
-                "reference": "6816f00f25c329d0ef5e36bd71f4665ed62db77b"
+                "reference": "6ed1f95f75146f618548b2346743a0a37b166607"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenjaminMedia/wp-contenthub-editor/zipball/6816f00f25c329d0ef5e36bd71f4665ed62db77b",
-                "reference": "6816f00f25c329d0ef5e36bd71f4665ed62db77b",
+                "url": "https://api.github.com/repos/BenjaminMedia/wp-contenthub-editor/zipball/6ed1f95f75146f618548b2346743a0a37b166607",
+                "reference": "6ed1f95f75146f618548b2346743a0a37b166607",
                 "shasum": ""
             },
             "require": {
@@ -77,7 +77,7 @@
                 "plugin",
                 "wordpress"
             ],
-            "time": "2018-08-07T10:38:06+00:00"
+            "time": "2018-08-07T10:41:25+00:00"
         },
         {
             "name": "bonnier/php-video-helper",
@@ -183,12 +183,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BenjaminMedia/wp-bonnier-redirect.git",
-                "reference": "f327957278ef4517fc7c8281f9cc03531349d25c"
+                "reference": "edfe05d864fa8b324c432dd9d0a475d4752cd685"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenjaminMedia/wp-bonnier-redirect/zipball/f327957278ef4517fc7c8281f9cc03531349d25c",
-                "reference": "f327957278ef4517fc7c8281f9cc03531349d25c",
+                "url": "https://api.github.com/repos/BenjaminMedia/wp-bonnier-redirect/zipball/edfe05d864fa8b324c432dd9d0a475d4752cd685",
+                "reference": "edfe05d864fa8b324c432dd9d0a475d4752cd685",
                 "shasum": ""
             },
             "require": {
@@ -216,7 +216,7 @@
                 }
             ],
             "description": "Redirect for Bonnier integration with Custom Permalink and Polylang",
-            "time": "2018-08-07T10:32:58+00:00"
+            "time": "2018-08-07T10:39:24+00:00"
         },
         {
             "name": "composer/installers",
