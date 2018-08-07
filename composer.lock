@@ -27,12 +27,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BenjaminMedia/wp-contenthub-editor.git",
-                "reference": "c33dfc60dc2b301a194bab1a96e781ae3745c7d0"
+                "reference": "6816f00f25c329d0ef5e36bd71f4665ed62db77b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenjaminMedia/wp-contenthub-editor/zipball/c33dfc60dc2b301a194bab1a96e781ae3745c7d0",
-                "reference": "c33dfc60dc2b301a194bab1a96e781ae3745c7d0",
+                "url": "https://api.github.com/repos/BenjaminMedia/wp-contenthub-editor/zipball/6816f00f25c329d0ef5e36bd71f4665ed62db77b",
+                "reference": "6816f00f25c329d0ef5e36bd71f4665ed62db77b",
                 "shasum": ""
             },
             "require": {
@@ -77,7 +77,7 @@
                 "plugin",
                 "wordpress"
             ],
-            "time": "2018-08-07T10:30:47+00:00"
+            "time": "2018-08-07T10:38:06+00:00"
         },
         {
             "name": "bonnier/php-video-helper",
@@ -183,12 +183,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/BenjaminMedia/wp-bonnier-redirect.git",
-                "reference": "bf3f04c77845ae2ee26157ad369c848b278ede69"
+                "reference": "f327957278ef4517fc7c8281f9cc03531349d25c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenjaminMedia/wp-bonnier-redirect/zipball/bf3f04c77845ae2ee26157ad369c848b278ede69",
-                "reference": "bf3f04c77845ae2ee26157ad369c848b278ede69",
+                "url": "https://api.github.com/repos/BenjaminMedia/wp-bonnier-redirect/zipball/f327957278ef4517fc7c8281f9cc03531349d25c",
+                "reference": "f327957278ef4517fc7c8281f9cc03531349d25c",
                 "shasum": ""
             },
             "require": {
@@ -216,7 +216,7 @@
                 }
             ],
             "description": "Redirect for Bonnier integration with Custom Permalink and Polylang",
-            "time": "2018-08-07T10:31:10+00:00"
+            "time": "2018-08-07T10:32:58+00:00"
         },
         {
             "name": "composer/installers",
