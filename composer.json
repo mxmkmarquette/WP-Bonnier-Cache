@@ -14,10 +14,6 @@
             "url": "https://wpackagist.org"
         },
         {
-            "type": "vcs",
-            "url": "https://github.com/BenjaminMedia/willow-mu-plugins"
-        },
-        {
             "type":"vcs",
             "url":"https://github.com/junaidbhura/composer-wp-pro-plugins"
         },
@@ -54,8 +50,8 @@
     ],
     "require": {
         "guzzlehttp/guzzle": "^6.3",
-        "bonnier/contenthub-editor": "dev-IVD",
-        "bonnier/willow-mu-plugins": "^1.0.0"
+        "bonnier/contenthub-editor": "^3.0",
+        "bonnier/willow-mu-plugins": "^1.1"
     },
     "require-dev": {
         "johnpbloch/wordpress": "^4.9"
@@ -64,6 +60,5 @@
         "psr-4": {
             "Bonnier\\WP\\Cache\\": "src"
         }
-    },
-    "minimum-stability": "dev",
-    "prefer-stable": true}
+    }
+}
