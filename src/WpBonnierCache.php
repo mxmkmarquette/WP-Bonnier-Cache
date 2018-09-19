@@ -3,9 +3,9 @@
 namespace Bonnier\WP\Cache;
 
 use Bonnier\WP\Cache\Admin\PostMetaBox;
+use Bonnier\WP\Cache\Commands\CacheCommand;
 use Bonnier\WP\Cache\Models\Post;
 use Bonnier\WP\Cache\Services\CacheApi;
-use Bonnier\WP\Cache\Settings\SettingsPage;
 
 class WpBonnierCache
 {
@@ -14,8 +14,6 @@ class WpBonnierCache
     const CLASS_DIR = 'src';
 
     private static $instance;
-
-    public $settings;
 
     public $file;
 
@@ -34,16 +32,17 @@ class WpBonnierCache
 
         load_plugin_textdomain(self::TEXT_DOMAIN, false, dirname($this->basename.'/languages'));
 
-        $this->settings = new SettingsPage();
-
         $this->bootstrap();
     }
 
     private function bootstrap()
     {
-        Post::watch_post_changes($this->settings);
-        CacheApi::bootstrap($this->settings);
+        Post::watchPostChanges();
+        CacheApi::bootstrap();
         PostMetaBox::register();
+        if (defined('WP_CLI') && WP_CLI) {
+            CacheCommand::register();
+        }
     }
 
     public static function instance()
