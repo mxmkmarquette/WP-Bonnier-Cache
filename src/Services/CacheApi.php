@@ -15,21 +15,22 @@ class CacheApi
 
     const ACF_CATEGORY_ID = 'field_58e39a7118284';
 
-    protected static $settings;
     /** @var Client $client */
     protected static $client;
 
-    public static function bootstrap(SettingsPage $settings)
+    public static function bootstrap()
     {
-        self::$settings = $settings;
-        $hostUrl = self::$settings->get_setting_value('host_url');
-        if (!empty($hostUrl)) {
+        $hostUrl = env('CACHE_MANAGER_HOST');
+        if (is_null($hostUrl)) {
+            add_action('admin_notices', function () {
+                echo sprintf(
+                    '<div class="error notice"><p>%s</p></div>',
+                    "CACHE_MANAGER_HOST not present in the .env file!"
+                );
+            });
+        } else {
             self::$client = new Client([
-                'base_uri' => $hostUrl,
-                'curl' => [
-                    CURLOPT_SSL_VERIFYHOST => false,
-                    CURLOPT_SSL_VERIFYPEER => false,
-                ]
+                'base_uri' => $hostUrl
             ]);
         }
     }
