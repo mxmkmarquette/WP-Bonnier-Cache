@@ -48,7 +48,7 @@ class CacheApi
 
         $post = get_post($postID);
 
-        if(isset($_REQUEST['acf'][static::ACF_CATEGORY_ID])) {
+        if (isset($_REQUEST['acf'][static::ACF_CATEGORY_ID])) {
             $newCat = get_term($_REQUEST['acf'][static::ACF_CATEGORY_ID]);
             $categoryLink = get_category_link($newCat->term_id);
             $contentUrl = $categoryLink.'/'.$post->post_name;
