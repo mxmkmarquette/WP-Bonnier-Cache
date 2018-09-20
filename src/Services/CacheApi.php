@@ -48,11 +48,13 @@ class CacheApi
 
         $post = get_post($postID);
 
-        $newCat = get_term($_REQUEST['acf'][static::ACF_CATEGORY_ID]);
-        $categoryLink = get_category_link($newCat->term_id);
-        $contentUrl = $categoryLink.'/'.$post->post_name;
+        if(isset($_REQUEST['acf'][static::ACF_CATEGORY_ID])) {
+            $newCat = get_term($_REQUEST['acf'][static::ACF_CATEGORY_ID]);
+            $categoryLink = get_category_link($newCat->term_id);
+            $contentUrl = $categoryLink.'/'.$post->post_name;
 
-        return self::post(self::CACHE_UPDATE, $contentUrl);
+            return self::post(self::CACHE_UPDATE, $contentUrl);
+        }
     }
 
     /**
