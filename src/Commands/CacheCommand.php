@@ -11,12 +11,14 @@ use WP_CLI_Command;
 
 class CacheCommand extends WP_CLI_Command
 {
-    const NAMESPACE = 'bonnier-cache';
+    const CMD_NAMESPACE = 'bonnier-cache';
+
+    protected $type = 'cxense';
 
     public static function register()
     {
         try {
-            WP_CLI::add_command(self::NAMESPACE, __CLASS__);
+            WP_CLI::add_command(self::CMD_NAMESPACE, __CLASS__);
         } catch (Exception $exception) {
             WP_CLI::line($exception->getMessage());
         }
@@ -25,11 +27,28 @@ class CacheCommand extends WP_CLI_Command
     /**
      * Sends all urls to be updated in the CacheManager.
      *
+     * ## Options
+     *
+     * [--type=<type>]
+     * : What type of update should be run?
+     * ---
+     * default: cxense
+     * options:
+     *   - cxense
+     *   - all
+     * ---
+     *
      * ## EXAMPLES
-     *     wp bonnier-cache update
+     *     wp bonnier-cache update --type=cxense
      */
-    public function update()
+    public function update($args, $assoc_args)
     {
+        if (isset($assoc_args['type'])) {
+            $this->type = $assoc_args['type'];
+        }
+        if ($this->type == 'all') {
+            WP_CLI::confirm('Are you sure, you want to update all urls everywhere?');
+        }
         $this->updateContent('page');
         $this->updateContent(WpComposite::POST_TYPE);
         $this->updateContent('category');
@@ -76,9 +95,10 @@ class CacheCommand extends WP_CLI_Command
 
     private function postUpdate(Collection $chunks, int $total, string $type)
     {
+        $endpoint = $this->type === 'cxense' ? '/api/v1/cxense/update' : '/api/v1/update';
         $processed = 0;
-        $chunks->each(function (Collection $urls) use (&$processed, $total, $type) {
-            if (CacheApi::post('/api/v1/update', $urls->toArray())) {
+        $chunks->each(function (Collection $urls) use (&$processed, $total, $type, $endpoint) {
+            if (CacheApi::post($endpoint, $urls->toArray())) {
                 $processed += $urls->count();
                 WP_CLI::line(sprintf(
                     'Sent %s of %s %s urls to be updated...',
