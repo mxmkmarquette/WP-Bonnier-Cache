@@ -7,16 +7,16 @@
     "content-hash": "37b1514e2e4cc41dc35da6a28b0ed566",
     "packages": [
         {
-            "name": "bonnier/contenthub-editor",
+            "name": "mxmkmarquette/wp-contenthub-editor",
             "version": "4.0.0",
             "source": {
                 "type": "git",
-                "url": "https://github.com/BenjaminMedia/wp-contenthub-editor.git",
+                "url": "https://github.com/mxmkmarquette/wp-contenthub-editor.git",
                 "reference": "3ee70e70a945780f4bd097428c9e6cd9fa7ccaf2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/BenjaminMedia/wp-contenthub-editor/zipball/3ee70e70a945780f4bd097428c9e6cd9fa7ccaf2",
+                "url": "https://api.github.com/repos/mxmkmarquette/wp-contenthub-editor/zipball/3ee70e70a945780f4bd097428c9e6cd9fa7ccaf2",
                 "reference": "3ee70e70a945780f4bd097428c9e6cd9fa7ccaf2",
                 "shasum": ""
             },
